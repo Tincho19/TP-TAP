@@ -33,5 +33,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Tincho/Desktop/Diseño de Sistemas/hsqldb-2.2.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/sqljdbc42.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
