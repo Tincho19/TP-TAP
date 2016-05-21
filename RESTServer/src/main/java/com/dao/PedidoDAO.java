@@ -14,20 +14,18 @@ public class PedidoDAO{
 	
 	Connection conn = null;
 	 static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	 static final String DB_URL = "jdbc:sqlserver://TINCHO-T420:1032//TAPDataBase";
 
 	   //  Database credentials
 	   static final String USER = "sa";
 	   static final String PASS = "a66179";
+	   static final String DATABASE = "TAPDataBase";
+	   static final	String SERVER = "localhost\\SQLEXPRESS2012:1039";
+
 	   
 	private PedidoDAO(){
 		try {	
 				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-				String server = "TINCHO-T420\\SQLEXPRESS2012:1039";
-				String user = "sa";
-				String pass = "a66179";
-				String dataBase = "TAPDataBase";
-				String jdbcUrl = ("jdbc:sqlserver://"+server+";user="+user+";password="+pass+";databaseName="+dataBase);
+				String jdbcUrl = ("jdbc:sqlserver://"+SERVER+";user="+USER+";password="+PASS+";databaseName="+DATABASE);
 				conn = DriverManager.getConnection(jdbcUrl);
 		} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
