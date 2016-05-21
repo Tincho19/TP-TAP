@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 import com.entities.Pedido;
 
-public class ABMPedidos{
+public class PedidoDAO{
 	
 	Connection conn = null;
 	 static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
@@ -20,27 +20,15 @@ public class ABMPedidos{
 	   static final String USER = "sa";
 	   static final String PASS = "a66179";
 	   
-	private ABMPedidos(){
-		try {
-			
-			
-//				Class.forName("org.hsqldb.jdbcDriver");
-//				conn = DriverManager.getConnection("jdbc:hsqldb:C:/TP-TAP/TablaPedidos.db", "sa", "");
+	private PedidoDAO(){
+		try {	
 				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-				String server = "TINCHO-T420\\SQLEXPRESS2012:1032";
+				String server = "TINCHO-T420\\SQLEXPRESS2012:1039";
 				String user = "sa";
 				String pass = "a66179";
 				String dataBase = "TAPDataBase";
-	//			String jdbcUrl = ("jdbc:sqlserver//"+server);
 				String jdbcUrl = ("jdbc:sqlserver://"+server+";user="+user+";password="+pass+";databaseName="+dataBase);
 				conn = DriverManager.getConnection(jdbcUrl);
-				generarReporte();
-				   
-//				   Statement stmt = null;
-//				      //STEP 2: Register JDBC driver
-//					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//				      //STEP 3: Open a connection
-//				      conn = DriverManager.getConnection(DB_URL,USER,PASS);
 		} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -50,11 +38,11 @@ public class ABMPedidos{
 		}
 	}
 	
-	private static ABMPedidos instance;
+	private static PedidoDAO instance;
 	
-	public static ABMPedidos getInstance(){
+	public static PedidoDAO getInstance(){
 		if(instance == null){
-			instance = new ABMPedidos();
+			instance = new PedidoDAO();
 		}
 	return instance;
 	}
@@ -65,36 +53,29 @@ public class ABMPedidos{
 		try{		
 			stmt = conn.createStatement();
 			StringBuffer query = new StringBuffer();
-			query.append("INSERT INTO pedido (id,nombre,calle,altura,piso,telefono,comida) VALUES (");
+			query.append("INSERT INTO pedidos (id,nombre,direccion,telefono,comida) VALUES (");
 			query.append(pedido.getIdPedido());
 			query.append(",'");
 			query.append(pedido.getCliente().getNombre());
 			query.append("','");
-			query.append(pedido.getCliente().getDireccion().getCalle());
-			query.append("',");
-			query.append(pedido.getCliente().getDireccion().getAltura());
-			query.append(",'");
-			query.append(pedido.getCliente().getDireccion().getPiso());
+			query.append(pedido.getCliente().getDireccion());
 			query.append("','");
 			query.append(pedido.getCliente().getTelefono());
 			query.append("','");
 			query.append(pedido.getComida());
 			query.append("');");
-			
-			
-//			String insert = "INSERT INTO pedido (id,nombre,calle,altura,piso,comida) VALUES ('"+pedido.get+"','"+nombre+"','"+calle+"',"+altura+",'"+piso+"','"+comida+"');"; // ansii92
-				stmt.executeUpdate(query.toString());
+			stmt.executeUpdate(query.toString());
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Error al insertar registro: "+e.getMessage()+"SQL error: "+e.getSQLState(),"titulo",JOptionPane.ERROR_MESSAGE);
 			}
 	}
 	
-	public void updatePedidoDB(Pedido pedido) {
+	public void modificarPedidoDB(Pedido pedido) {
 		Statement stmt = null;
 		try{		
 			stmt = conn.createStatement();
 			StringBuffer query = new StringBuffer();
-			query.append("UPDATE pedido SET comida = '");
+			query.append("UPDATE pedidos SET comida = '");
 			query.append(pedido.getComida());
 			query.append("'");
 			query.append("WHERE id = ");
@@ -107,12 +88,12 @@ public class ABMPedidos{
 			}
 	}
 
-	public void deletePedidoDB(Pedido pedido) {
+	public void eliminarPedidoDB(Pedido pedido) {
 		Statement stmt = null;
 		try{		
 			stmt = conn.createStatement();
 			StringBuffer query = new StringBuffer();
-			query.append("DELETE FROM pedido WHERE id = ");
+			query.append("DELETE FROM pedidos WHERE id = ");
 			query.append(pedido.getIdPedido());
 			query.append(";");
 			

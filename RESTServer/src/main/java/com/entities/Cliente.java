@@ -2,9 +2,8 @@ package com.entities;
 
 public class Cliente {
 	
-	private long id;
 	private String nombre;
-	private Direccion direccion;
+	private String direccion;
 	private String telefono;
 	
 	public String getTelefono() {
@@ -19,17 +18,11 @@ public class Cliente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Direccion getDireccion() {
+	public String getDireccion() {
 		return direccion;
 	}
-	public void setDireccion(Direccion direccion) {
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	
 
