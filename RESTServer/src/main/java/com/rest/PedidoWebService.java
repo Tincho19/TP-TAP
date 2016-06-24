@@ -38,12 +38,11 @@ public class PedidoWebService {
 	}
 
 	@GET
-	@Path("/crear/{id}")
+	@Path("/crear")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String crearPedido(@PathParam("id") String id) { 		
+	public String crearPedido() { 		
 		Pedido p = new Pedido();
 		Cliente c = new Cliente();
-		p.setIdPedido(Integer.valueOf(id).intValue());
 		c.setNombre("Juan Web");
 		c.setDireccion("Mario Bravo Web");
 		c.setTelefono("4626-2626");

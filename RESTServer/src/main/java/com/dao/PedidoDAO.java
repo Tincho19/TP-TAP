@@ -19,7 +19,7 @@ public class PedidoDAO{
 	   static final String USER = "sa";
 	   static final String PASS = "a66179";
 	   static final String DATABASE = "TAPDataBase";
-	   static final	String SERVER = "localhost\\SQLEXPRESS2012:1039";
+	   static final	String SERVER = "localhost\\SQLEXPRESS2012:1433";
 
 	   
 	private PedidoDAO(){
@@ -51,9 +51,8 @@ public class PedidoDAO{
 		try{		
 			stmt = conn.createStatement();
 			StringBuffer query = new StringBuffer();
-			query.append("INSERT INTO pedidos (id,nombre,direccion,telefono,comida) VALUES (");
-			query.append(pedido.getIdPedido());
-			query.append(",'");
+			query.append("INSERT INTO pedidos (nombre,direccion,telefono,comida) VALUES (");
+			query.append("'");
 			query.append(pedido.getCliente().getNombre());
 			query.append("','");
 			query.append(pedido.getCliente().getDireccion());

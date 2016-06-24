@@ -32,29 +32,24 @@ public class MainUT {
 	cli3.setDireccion("Juncal 2010");
 	
 	// Creo pedidos
-	pedido1.setIdPedido(1);
 	pedido1.setComida("Milanesas con pure");
 	pedido1.setCliente(cli1);
-	pedido2.setIdPedido(2);
 	pedido2.setComida("3 pizzas grandes de muzzarella");
 	pedido2.setCliente(cli2);
-	pedido3.setIdPedido(3);
 	pedido3.setComida("2 docenas de empanadas");
 	pedido3.setCliente(cli3);
-	pedido4.setIdPedido(4);
 	pedido4.setComida("Hamburguesa completa con papas fritas");
 	pedido4.setCliente(cli2);
-	pedido5.setIdPedido(5);
 	pedido5.setComida("Ensalada elite suprema");
 	pedido5.setCliente(cli1);
 	
 	// Borro el contenido de la base de datos
-	orden.eliminarPedido(pedido1);
-	orden.eliminarPedido(pedido2);
-	orden.eliminarPedido(pedido3);
-	orden.eliminarPedido(pedido4);
-	orden.eliminarPedido(pedido5);
-		
+	//orden.eliminarPedido(pedido1);
+	//orden.eliminarPedido(pedido2);
+	//orden.eliminarPedido(pedido3);
+	//orden.eliminarPedido(pedido4);
+	//orden.eliminarPedido(pedido5);
+	
 	// Doy de alta los pedidos
 	orden.crearPedido(pedido1);
 	orden.crearPedido(pedido2);
