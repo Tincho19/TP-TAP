@@ -1,14 +1,10 @@
 package com.service;
 
-
-
-import com.entities.Pedido;
-
 public interface IPedidoService {
 		
-	public void crearPedido(Pedido pedido);
-	public void modificarPedido(Pedido pedido);
-	public void eliminarPedido(Pedido pedido);
+	public void crearPedido(String nombre, String direccion, String telefono, String comida);
+	public void modificarPedido(int id_pedido, String comida);
+	public void eliminarPedido(int id_pedido);
 	public String generarReporte();
 
 }

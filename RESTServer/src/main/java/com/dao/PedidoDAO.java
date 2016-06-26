@@ -8,8 +8,6 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import com.entities.Pedido;
-
 public class PedidoDAO{
 	
 	Connection conn = null;
@@ -46,20 +44,20 @@ public class PedidoDAO{
 	}
 	
 	
-	public void crearPedidoDB(Pedido pedido) {
+	public void crearPedidoDB(String nombre, String direccion, String telefono, String comida) {
 		Statement stmt = null;
 		try{		
 			stmt = conn.createStatement();
 			StringBuffer query = new StringBuffer();
 			query.append("INSERT INTO pedidos (nombre,direccion,telefono,comida) VALUES (");
 			query.append("'");
-			query.append(pedido.getCliente().getNombre());
+			query.append(nombre);
 			query.append("','");
-			query.append(pedido.getCliente().getDireccion());
+			query.append(direccion);
 			query.append("','");
-			query.append(pedido.getCliente().getTelefono());
+			query.append(telefono);
 			query.append("','");
-			query.append(pedido.getComida());
+			query.append(comida);
 			query.append("');");
 			stmt.executeUpdate(query.toString());
 			} catch (SQLException e) {
@@ -67,16 +65,16 @@ public class PedidoDAO{
 			}
 	}
 	
-	public void modificarPedidoDB(Pedido pedido) {
+	public void modificarPedidoDB(int id, String comida) {
 		Statement stmt = null;
 		try{		
 			stmt = conn.createStatement();
 			StringBuffer query = new StringBuffer();
 			query.append("UPDATE pedidos SET comida = '");
-			query.append(pedido.getComida());
+			query.append(comida);
 			query.append("'");
 			query.append("WHERE id = ");
-			query.append(pedido.getIdPedido());
+			query.append(id);
 			query.append(";");
 			
 			stmt.executeUpdate(query.toString());
@@ -85,13 +83,13 @@ public class PedidoDAO{
 			}
 	}
 
-	public void eliminarPedidoDB(Pedido pedido) {
+	public void eliminarPedidoDB(int id) {
 		Statement stmt = null;
 		try{		
 			stmt = conn.createStatement();
 			StringBuffer query = new StringBuffer();
 			query.append("DELETE FROM pedidos WHERE id = ");
-			query.append(pedido.getIdPedido());
+			query.append(id);
 			query.append(";");
 			
 			stmt.executeUpdate(query.toString());
@@ -121,9 +119,6 @@ public class PedidoDAO{
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error al conectarse a la base: "+e.getMessage()+"SQL error: "+e.getSQLState(),"titulo",JOptionPane.ERROR_MESSAGE);
 		}
-		return Resultado;
-		
-		
+		return Resultado;	
 	}
-	
 }

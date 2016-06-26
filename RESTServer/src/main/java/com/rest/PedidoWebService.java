@@ -14,7 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.entities.Cliente;
 import com.entities.Pedido;
 import com.service.IPedidoService;
 import com.service.PedidoService;
@@ -32,7 +31,7 @@ public class PedidoWebService {
 	public String borrarPedido(@PathParam("id") String id) { 		
 		Pedido p = new Pedido();
 		p.setIdPedido(Integer.valueOf(id).intValue());
-		manejoPedido.eliminarPedido(p);
+		manejoPedido.eliminarPedido(p.getIdPedido());
 
 		return OK;
 	}
@@ -42,13 +41,11 @@ public class PedidoWebService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String crearPedido() { 		
 		Pedido p = new Pedido();
-		Cliente c = new Cliente();
-		c.setNombre("Juan Web");
-		c.setDireccion("Mario Bravo Web");
-		c.setTelefono("4626-2626");
+		p.setNombre("Juan Web");
+		p.setDireccion("Mario Bravo Web");
+		p.setTelefono("4626-2626");
 		p.setComida("Empanadas Web");
-		p.setCliente(c);
-		manejoPedido.crearPedido(p);
+		manejoPedido.crearPedido(p.getNombre(), p.getDireccion(), p.getTelefono(),p.getComida());
 		return OK;
 	}
 	
@@ -59,7 +56,7 @@ public class PedidoWebService {
 		Pedido p = new Pedido();
 		p.setIdPedido(Integer.valueOf(id).intValue());
 		p.setComida("Locro Web");
-		manejoPedido.modificarPedido(p);
+		manejoPedido.modificarPedido(p.getIdPedido(), p.getComida());
 		return OK;
 	}
 	
