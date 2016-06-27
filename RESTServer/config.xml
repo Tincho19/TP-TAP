@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+
+	<server>
+		<logic_path>C:\Users\Tincho\git\TP\RESTServer\src\main\java\com\rest\myAnnotation</logic_path>	
+	</server>
+
+	<client>
+		<proxy_path>C:\Users\Tincho\git\TP\RESTServer\src\main\java\com\rest\myAnnotation</proxy_path>
+	</client>
+	
+	<serverClassName>AnnotationServer</serverClassName>
+	
+	<temp_path>C:\Temporal\</temp_path>
+	
+	
+	
+</config>
