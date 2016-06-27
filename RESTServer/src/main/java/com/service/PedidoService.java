@@ -12,25 +12,15 @@ public class PedidoService implements IPedidoService {
 	}
 	
 	public void crearPedido(String nombre, String direccion, String telefono, String comida) {
-		Pedido pedido = new Pedido();
-		pedido.setNombre("Jorge");
-		pedido.setDireccion("Santa fe 2222");
-		pedido.setTelefono("1215-1251");
-		pedido.setComida("Ravioles");
-		abmPedidos.crearPedidoDB(pedido.getNombre(), pedido.getDireccion(), pedido.getTelefono(), pedido.getComida());		
+		abmPedidos.crearPedidoDB(nombre, direccion, telefono, comida);
 	}
 
 	public void modificarPedido(int id_pedido, String comida) {
-		Pedido pedido = new Pedido();
-		pedido.setComida("Chauchas");
-		pedido.setIdPedido(1);
-		abmPedidos.modificarPedidoDB(pedido.getIdPedido(), pedido.getComida());
+		abmPedidos.modificarPedidoDB(id_pedido, comida);
 	}
 
 	public void eliminarPedido(int id_pedido) {
-		Pedido pedido = new Pedido();
-		pedido.setIdPedido(1);
-		abmPedidos.eliminarPedidoDB(pedido.getIdPedido());		
+		abmPedidos.eliminarPedidoDB(id_pedido);		
 	}
 
 	public String generarReporte() {
