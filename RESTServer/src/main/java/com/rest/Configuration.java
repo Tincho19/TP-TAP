@@ -14,6 +14,8 @@ public class Configuration {
 	private String proxyPath;
 	private String tempPath;
 	private String serverClassName;
+	private String clientClassName;
+
 
 	public String getLogicPath() {
 		return logicPath;
@@ -54,6 +56,8 @@ public class Configuration {
 			
 			serverClassName = doc.getElementsByTagName("serverClassName").item(0).getTextContent();
 			
+			clientClassName = doc.getElementsByTagName("clientClassName").item(0).getTextContent();
+			
 		} catch (Exception e) {
 			throw e;
 		}
@@ -67,4 +71,9 @@ public class Configuration {
 		System.out.println("\tPath for temporary files: " + this.tempPath);
 		System.out.println("\tServer Class Name: " + this.serverClassName);
 	}
+
+	public String getClientClassName() {
+		return clientClassName;
+	}
+
 }

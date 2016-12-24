@@ -45,6 +45,7 @@ public class RestBuilder {
 	private static Pattern classDeclarationPattern = Pattern.compile(".*class ([^\\s]*) ");
 	private static Pattern packagePattern = Pattern.compile("^\\s*package\\s*([^\\s]*)\\s*;");
 	private ServerClass serverClass;
+	private ClientClass clientClass;
 	private ArrayList<String> entitiesName;
 	
 	private void processClass(Path javaFile) {
@@ -97,6 +98,8 @@ public class RestBuilder {
 						
 						serverClass.getMethods().add(method);
 						
+						clientClass.getLogicClasses().put(clazz.getName(), clazz);
+						clientClass.getMethods().add(method);
 						
 						//Looking for entities to export with proxy
 						for(Class<?> type : method.getParameterTypes()) {
@@ -150,6 +153,8 @@ public class RestBuilder {
 		System.out.println("Procesando...");
 		
 		serverClass = new ServerClass(configuration.getServerClassName());
+		clientClass = new ClientClass(configuration.getServerClassName());
+
 		entitiesName = new ArrayList<>();
 		
 		ArrayList<File> javaFiles = new ArrayList<>();
@@ -171,6 +176,14 @@ public class RestBuilder {
 		
 		Compilador comp = new Compilador();
 		comp.compilarClaseRest(configuration.getServerClassName(), claseEnString);
+		
+		String claseEnStringClient = clientClass.buildJavaCode();
+		System.out.println("Inicioooooooooooo\n");
+		System.out.println(claseEnStringClient);
+		System.out.println("Finnnnnnnnnn\n");
+		
+		Compilador comp2 = new Compilador();
+		comp2.compilarClaseRest(configuration.getClientClassName(), claseEnStringClient);
 		
 		System.out.println("Se creo el archivo .class");
 	}

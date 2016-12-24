@@ -10,6 +10,8 @@
 	</client>
 	
 	<serverClassName>AnnotationServer</serverClassName>
+
+	<clientClassName>Proxy</clientClassName>
 	
 	<temp_path>C:\Temporal\</temp_path>
 	
